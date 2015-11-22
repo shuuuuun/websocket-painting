@@ -1,0 +1,1 @@
+!function(t,n){var o=(t.App=t.App||{},"http://localhost:2020"),i=io.connect(o);$(function(){var t=$(".wrapper"),n=$(".js-form"),o=$(".js-input"),u=$(".js-submit");n.on("submit",function(){return!1}),u.on("click",function(){i.emit("textsubmit",{value:o.val()})}),i.on("hoge",function(n){console.log(n),t.append($("<p>").text(n.value))})})}(this,document);
