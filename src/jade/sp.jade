@@ -13,12 +13,16 @@ html(lang="ja")
     //- script(src="./js/lib/jquery.easing.1.3.js")
     //- script(src="./js/lib/jquery.transform2d.js")
     
-    script(src="./js/Util.js")
-    script(src="./js/main.js")
+    script(src="/js/Util.js")
+    script(src="/js/main.js")
     
   body
     //- include partials/_ua
     //- +ua("App")
     
     div.wrapper
-      h1 hoge
+      h1 hoge sp
+      
+      form.js-form(action="" method="POST")
+        input.js-input(name="" type="text")
+        button.js-submit(type="submit") SUBMIT
