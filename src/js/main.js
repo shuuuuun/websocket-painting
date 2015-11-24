@@ -2,7 +2,9 @@
   var ns = win.App = win.App || {};
   
   // var $win = $(win);
-  // var util = new ns.Util();
+  var util = new ns.Util();
+  var konsole;
+  var dot;
   
   // var URL = 'ws://localhost:2020';
   var URL = 'http://localhost:2020';
@@ -18,22 +20,32 @@
   $(function(){
     var $wrapper = $('.wrapper');
     
-    var $form = $('.js-form');
-    var $input = $('.js-input');
-    var $submit = $('.js-submit');
-    $form.on('submit',function(){
-      // alert('submit');
-      return false;
-    });
-    $submit.on('click',function(){
-      // alert('click');
-      socket.emit('textsubmit', { value: $input.val() });
-      // return false;
-    });
+    // var $form = $('.js-form');
+    // var $input = $('.js-input');
+    // var $submit = $('.js-submit');
+    // $form.on('submit',function(){
+    //   // alert('submit');
+    //   return false;
+    // });
+    // $submit.on('click',function(){
+    //   // alert('click');
+    //   socket.emit('textsubmit', { value: $input.val() });
+    //   // return false;
+    // });
     
-    socket.on('hoge', function (data) {
+    // socket.on('hoge', function (data) {
+    //   console.log(data);
+    //   $wrapper.append($('<p>').text(data.value));
+    // });  
+    
+    
+    konsole = document.querySelector('.konsole');
+    dot = document.querySelector('.dot');
+    
+    socket.on('update', function (data) {
       console.log(data);
-      $wrapper.append($('<p>').text(data.value));
+      dot.style.left = data.left;
+      dot.style.top = data.top;
     });  
     
   });

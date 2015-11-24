@@ -59,6 +59,11 @@ io.on('connection', function (socket) {
     // socket.emit('hoge', data); // 同じ画面にしか送れないと思ったら
     // socket.broadcast.emit('hoge', data); // broadcastすれば良かった
     io.emit('hoge', data); // これでもok
+  });
+  
+  socket.on('motion', function (data) {
+    // console.log(data);
+    io.emit('update', data); // broadcast
     
   });
 });
