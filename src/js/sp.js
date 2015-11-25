@@ -11,7 +11,6 @@
   
   var URL = 'http://172.21.33.194:2020';
   // var URL = 'http://192.168.1.4:2020';
-  
   // var socket = io.connect(URL);
   var socket = io(); // URL指定しなくてもデフォルトで現在のホストに接続する
   
