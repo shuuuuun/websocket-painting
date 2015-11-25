@@ -37,6 +37,9 @@ gulp.task('watch',function(){
   watch(['./src/scss/*.scss','./src/scss/**/*.scss','./src/scss/**/_*.scss'],function(){
     gulp.start('compass');
   });
+  watch(['./src/scss/*.css','./src/scss/**/*.css','./src/scss/**/_*.css'],function(){
+    gulp.start('css');
+  });
 });
 
 gulp.task('server',function(){
@@ -90,5 +93,11 @@ gulp.task('compass', function(){
       css: DEST_PATH+'css/',
       sass: './src/scss/'
     }))
+    .pipe(gulp.dest(DEST_PATH+'css/'));
+});
+
+gulp.task('css', function(){
+  gulp.src(['./src/scss/*.css','./src/scss/**/*.css','!src/scss/**/_*.css'])
+    .pipe(plumber())
     .pipe(gulp.dest(DEST_PATH+'css/'));
 });
