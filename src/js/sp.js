@@ -4,7 +4,7 @@
   var util = new ns.Util();
   var throttleInterval = 10;
   var threshold = 5;
-  var adjustment = 1;
+  var adjustment = 2;
   var konsole;
   var dot;
   var container;
@@ -59,8 +59,8 @@
       
       socket.emit('motion', {
         connectionId: connectionId,
-        top: dotX,
-        left: dotY,
+        left: dotX,
+        top: dotY,
       });
       
       var left = dotX;

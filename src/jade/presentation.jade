@@ -16,7 +16,7 @@ html(lang="ja")
     script(src="https://cdn.socket.io/socket.io-1.3.7.js")
     script(src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js")
     script(src="/js/Util.js")
-    //- script(src="/js/main.js")
+    script(src="/js/main.js")
     
     style.
       .wrapper {
@@ -29,6 +29,8 @@ html(lang="ja")
   body
     div.wrapper
       //- h1 presentation
+      
+      canvas#cnvs(width="400" height="400")
       
       div.reveal
         div.slides

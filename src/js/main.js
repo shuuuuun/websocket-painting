@@ -29,14 +29,16 @@
       dotAry.push(new Dot(data));
       connectionIdList.push(data.connectionId);
       
-      socket.on('update', function (data) {
+      // socket.on('update', function (data) {
+      socket.on('update', util.throttle(function (data) {
         // console.log(data);
         
         var index = connectionIdList.indexOf(data.connectionId);
         dotAry[index].update(data);
         
         render();
-      });
+      // });
+      },50));
     });
     
     function render(){
@@ -55,7 +57,7 @@
   
   
   function Dot(data){
-    var r = util.getRandomInt(0,COLOR_LIST.length);
+    var r = util.getRandomInt(0,COLOR_LIST.length-1);
     this.fillStyle = COLOR_LIST[r];
     this.dotX = data.left;
     this.dotY = data.top;
@@ -68,6 +70,3 @@
   
   
 })(this, document);
-
-
-
