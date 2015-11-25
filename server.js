@@ -8,7 +8,7 @@ var fs = require('fs');
 server.listen(PORT);
 
 function handler (req, res) {
-  console.log('request.url:', req.url);
+  // console.log('request.url:', req.url);
   var file = (__dirname + '/public' + req.url).replace(/\/$/,'/index.html');
   fs.readFile(file, function (err, data) {
     if (err) {
@@ -27,9 +27,12 @@ io.on('connection', function (socket) {
     console.log('user disconnected');
   });
   
-  socket.on('motion', function (data) {
-    io.emit('update', data); // broadcast
+  socket.on('createDot', function (data) {
+    io.emit('createDot', data); // broadcast
     
+    socket.on('motion', function (data) {
+      io.emit('update', data); // broadcast
+    });
   });
 });
 

@@ -17,6 +17,13 @@
   var dotX = 0,
       dotY = 0;
   
+  var connectionId = util.getRandomInt(0,9999999); // 0~9999999の乱数
+  socket.emit('createDot', {
+    connectionId: connectionId,
+    top: dotX,
+    left: dotY,
+  });
+  
   $(function(){
     konsole = document.querySelector('.konsole');
     container = document.querySelector('.container');
@@ -51,6 +58,7 @@
       dotY -= (yg / adjustment);
       
       socket.emit('motion', {
+        connectionId: connectionId,
         top: dotX,
         left: dotY,
       });
