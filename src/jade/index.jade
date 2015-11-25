@@ -17,6 +17,11 @@ html(lang="ja")
         font-size: 20px;
         font-family: Futura, sans-serif;
       }
+      h1 {
+          position: relative;
+          z-index: 1;
+          margin: 10px;
+      }
       .container {
           height: 250px;
           margin: 1em;
@@ -34,6 +39,12 @@ html(lang="ja")
           left: 0;
           right: 0;
           bottom: 0;
+      }
+      canvas {
+          background-color: #eee;
+          position: absolute;
+          margin: 10px;
+          top: 0;
       }
     
     
@@ -55,6 +66,8 @@ html(lang="ja")
       
       p.konsole
       
-      div.container
+      //- div.container
         div.dot
+      
+      canvas#cnvs(width="400" height="400")
 

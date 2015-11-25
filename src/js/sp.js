@@ -7,16 +7,24 @@
   var adjustment = 1;
   var konsole;
   var dot;
+  var container;
   
   var URL = 'http://172.21.33.194:2020';
   // var URL = 'http://192.168.1.4:2020';
   
-  var socket = io.connect(URL);
-  // var socket = io(); // URL指定しなくてもデフォルトで現在のホストに接続する
+  // var socket = io.connect(URL);
+  var socket = io(); // URL指定しなくてもデフォルトで現在のホストに接続する
+  
+  var dotX = 0,
+      dotY = 0;
   
   $(function(){
     konsole = document.querySelector('.konsole');
+    container = document.querySelector('.container');
     dot = document.querySelector('.dot');
+    
+    containerW = $(container).width();
+    containerH = $(container).height();
   });
   
   window.addEventListener('devicemotion', util.throttle(function(evt){
@@ -39,24 +47,24 @@
           txt += 'beta(x):  ' + b.toString().slice(0,5) + '<br>';
           txt += 'gamma(y): ' + g.toString().slice(0,5) + '<br>';
       
-      if (!xg || !yg || !zg) {
-          txt = 'Not Supported!!';
-          konsole.innerHTML = txt;
-          return;
-      }
-      // konsole.innerHTML = txt;
       
-      var currentLeft = parseFloat(dot.style.left) || 0;
-      var currentTop = parseFloat(dot.style.top) || 0;
-      
-      dot.style.left = (currentLeft + (xg / adjustment)) + 'px';
-      dot.style.top = (currentTop - (yg / adjustment)) + 'px';
-      
+      dotX += (xg / adjustment);
+      dotY -= (yg / adjustment);
       
       socket.emit('motion', {
-        top: dot.style.top,
-        left: dot.style.left,
+        top: dotX,
+        left: dotY,
       });
+      
+      var left = dotX;
+      var top = dotY;
+      
+      // var left = (dotX < -containerW/2) ? -containerW/2: dotX;
+      // var top = (dotY < -containerH/2) ? -containerH/2: dotY;
+      
+      dot.style.left = left + 'px';
+      dot.style.top = top + 'px';
+      
       
   },throttleInterval), true);
 
