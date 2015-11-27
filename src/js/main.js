@@ -43,6 +43,7 @@
       $.each(dotAry, function(index, dot){
         ctx.save();
           ctx.fillStyle = dot.fillStyle;
+          ctx.beginPath();
           ctx.arc(dot.dotX, dot.dotY, 5, 0, pi * 2);
           ctx.fill();
           ctx.closePath();
