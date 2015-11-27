@@ -1,22 +1,20 @@
 (function(win, doc){
   var ns = win.App = win.App || {};
   
-  // var $win = $(win);
   var util = new ns.Util();
   var pi = Math.PI;
   
-  var URL = 'http://localhost:2020';
+  // var URL = 'http://localhost:2020';
   // var socket = io.connect(URL);
   var socket = io(); // URL指定しなくてもデフォルトで現在のホストに接続する
   
   var COLOR_LIST = ["#FFCC66", "#FF6666", "#CCFF66", "#66CCFF", "#FF6FCF", "#66FFCC", "#FFFF66"];
+  var throttleInterval = 10;
   
   var dotAry = [];
   var connectionIdList = [];
   
   $(function(){
-    var $wrapper = $('.wrapper');
-    
     var cnvs = document.getElementById("cnvs");
     var ctx = cnvs.getContext("2d");
     
@@ -29,29 +27,27 @@
       dotAry.push(new Dot(data));
       connectionIdList.push(data.connectionId);
       
-      // socket.on('update', function (data) {
-      socket.on('update', util.throttle(function (data) {
-        // console.log(data);
-        
-        var index = connectionIdList.indexOf(data.connectionId);
-        dotAry[index].update(data);
-        
-        render();
-      // });
-      },50));
+      socket.on('update', util.throttle(update, throttleInterval));
     });
     
+    function update(data){
+      var index = connectionIdList.indexOf(data.connectionId);
+      dotAry[index].update(data);
+      
+      render();
+    }
+    
     function render(){
-        //ctx.clearRect(0, 0, cnvs.width, cnvs.height);
-        
-        $.each(dotAry, function(index, dot){
-          ctx.save();
-            ctx.fillStyle = dot.fillStyle;
-            ctx.arc(dot.dotX, dot.dotY, 5, 0, pi * 2);
-            ctx.fill();
-            ctx.closePath();
-          ctx.restore();
-        });
+      //ctx.clearRect(0, 0, cnvs.width, cnvs.height);
+      
+      $.each(dotAry, function(index, dot){
+        ctx.save();
+          ctx.fillStyle = dot.fillStyle;
+          ctx.arc(dot.dotX, dot.dotY, 5, 0, pi * 2);
+          ctx.fill();
+          ctx.closePath();
+        ctx.restore();
+      });
     }
   });
   
