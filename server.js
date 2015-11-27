@@ -26,6 +26,9 @@ io.on('connection', function (socket) {
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
+  // console.log(socket);
+  var socket_id = socket.id;
+  console.log(socket_id);
   
   socket.on('createDot', function (data) {
     io.emit('createDot', data); // broadcast
