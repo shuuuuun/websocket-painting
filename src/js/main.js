@@ -15,6 +15,8 @@
   var connectionIdList = [];
   
   $(function(){
+    setQrCode();
+    
     var cnvs = document.getElementById("cnvs");
     var ctx = cnvs.getContext("2d");
     
@@ -64,6 +66,15 @@
     this.dotX = data.left;
     this.dotY = data.top;
   };
+  
+  
+  function setQrCode(){
+    var $qrimg = $(".qr img");
+    var size = 200;
+    var src = "https://chart.googleapis.com/chart?cht=qr&chs="+size+"x"+size+"&chl=" + encodeURIComponent(location.origin) + "/sp/";
+    $qrimg.attr("src", src);
+    console.log(src);
+  }
   
   
 })(this, document);
