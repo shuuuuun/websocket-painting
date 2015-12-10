@@ -118,10 +118,19 @@ canvas {
   right: 0;
   bottom: 0;
 }
+.sp .toucharea {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 75px;
+}
 .sp .dot {
-  width: 15px;
-  height: 15px;
-  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
   background-color: #ffcc66;
   border: solid 1px #000;
   margin: auto;
