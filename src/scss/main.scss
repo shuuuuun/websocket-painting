@@ -73,8 +73,19 @@ canvas {
     bottom: 0;
   }
   
+  .toucharea {
+    $size: 100px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: (250px - $size) / 2;
+  }
+  
   .dot {
-    $size: 15px;
+    $size: 30px;
     width: $size;
     height: $size;
     border-radius: $size;
